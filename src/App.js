@@ -3,13 +3,13 @@
 // Version:     1.xx
 import React, { Component } from 'react';
 import './App.css';
-import Country from './components/Country';
+import Countries from './components/Countries';
 
 class App extends Component {
   render() { 
     return ( 
       <div className="App">
-        <Country />
+        <Countries />
       </div>
      );
   }
