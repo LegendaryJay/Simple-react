@@ -1,36 +1,56 @@
 import React, { Component } from 'react';
 import Country from './Country';
-class Countries extends Component {
-    state = {
-        index: 0,
-        countries: [{ "id": "NUM", "name": "Afghanistan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Albania", "goldMedalCount": 0 }, { "id": "NUM", "name": "Algeria", "goldMedalCount": 0 }, { "id": "NUM", "name": "Andorra", "goldMedalCount": 0 }, { "id": "NUM", "name": "Angola", "goldMedalCount": 0 }, { "id": "NUM", "name": "Antigua and Barbuda", "goldMedalCount": 0 }, { "id": "NUM", "name": "Argentina", "goldMedalCount": 0 }, { "id": "NUM", "name": "Armenia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Australia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Austria", "goldMedalCount": 0 }, { "id": "NUM", "name": "Azerbaijan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bahamas", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bahrain", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bangladesh", "goldMedalCount": 0 }, { "id": "NUM", "name": "Barbados", "goldMedalCount": 0 }, { "id": "NUM", "name": "Belarus", "goldMedalCount": 0 }, { "id": "NUM", "name": "Belgium", "goldMedalCount": 0 }, { "id": "NUM", "name": "Belize", "goldMedalCount": 0 }, { "id": "NUM", "name": "Benin", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bhutan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bolivia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bosnia and Herzegovina", "goldMedalCount": 0 }, { "id": "NUM", "name": "Botswana", "goldMedalCount": 0 }, { "id": "NUM", "name": "Brazil", "goldMedalCount": 0 }, { "id": "NUM", "name": "Brunei", "goldMedalCount": 0 }, { "id": "NUM", "name": "Bulgaria", "goldMedalCount": 0 }, { "id": "NUM", "name": "Burkina Faso", "goldMedalCount": 0 }, { "id": "NUM", "name": "Burundi", "goldMedalCount": 0 }, { "id": "NUM", "name": "Cabo Verde", "goldMedalCount": 0 }, { "id": "NUM", "name": "Cambodia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Cameroon", "goldMedalCount": 0 }, { "id": "NUM", "name": "Canada", "goldMedalCount": 0 }, { "id": "NUM", "name": "Central African Republic", "goldMedalCount": 0 }, { "id": "NUM", "name": "Chad", "goldMedalCount": 0 }, { "id": "NUM", "name": "Chile", "goldMedalCount": 0 }, { "id": "NUM", "name": "China", "goldMedalCount": 0 }, { "id": "NUM", "name": "Colombia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Comoros", "goldMedalCount": 0 }, { "id": "NUM", "name": "Congo (Congo-Brazzaville)", "goldMedalCount": 0 }, { "id": "NUM", "name": "Costa Rica", "goldMedalCount": 0 }, { "id": "NUM", "name": "Croatia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Cuba", "goldMedalCount": 0 }, { "id": "NUM", "name": "Cyprus", "goldMedalCount": 0 }, { "id": "NUM", "name": "Czechia (Czech Republic)", "goldMedalCount": 0 }, { "id": "NUM", "name": "Democratic Republic of the Congo", "goldMedalCount": 0 }, { "id": "NUM", "name": "Denmark", "goldMedalCount": 0 }, { "id": "NUM", "name": "Djibouti", "goldMedalCount": 0 }, { "id": "NUM", "name": "Dominica", "goldMedalCount": 0 }, { "id": "NUM", "name": "Dominican Republic", "goldMedalCount": 0 }, { "id": "NUM", "name": "Ecuador", "goldMedalCount": 0 }, { "id": "NUM", "name": "Egypt", "goldMedalCount": 0 }, { "id": "NUM", "name": "El Salvador", "goldMedalCount": 0 }, { "id": "NUM", "name": "Equatorial Guinea", "goldMedalCount": 0 }, { "id": "NUM", "name": "Eritrea", "goldMedalCount": 0 }, { "id": "NUM", "name": "Estonia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Ethiopia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Fiji", "goldMedalCount": 0 }, { "id": "NUM", "name": "Finland", "goldMedalCount": 0 }, { "id": "NUM", "name": "France", "goldMedalCount": 0 }, { "id": "NUM", "name": "Gabon", "goldMedalCount": 0 }, { "id": "NUM", "name": "Gambia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Georgia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Germany", "goldMedalCount": 0 }, { "id": "NUM", "name": "Ghana", "goldMedalCount": 0 }, { "id": "NUM", "name": "Greece", "goldMedalCount": 0 }, { "id": "NUM", "name": "Grenada", "goldMedalCount": 0 }, { "id": "NUM", "name": "Guatemala", "goldMedalCount": 0 }, { "id": "NUM", "name": "Guinea", "goldMedalCount": 0 }, { "id": "NUM", "name": "Guinea-Bissau", "goldMedalCount": 0 }, { "id": "NUM", "name": "Guyana", "goldMedalCount": 0 }, { "id": "NUM", "name": "Haiti", "goldMedalCount": 0 }, { "id": "NUM", "name": "Holy See", "goldMedalCount": 0 }, { "id": "NUM", "name": "Honduras", "goldMedalCount": 0 }, { "id": "NUM", "name": "Hungary", "goldMedalCount": 0 }, { "id": "NUM", "name": "Iceland", "goldMedalCount": 0 }, { "id": "NUM", "name": "India", "goldMedalCount": 0 }, { "id": "NUM", "name": "Indonesia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Iran", "goldMedalCount": 0 }, { "id": "NUM", "name": "Iraq", "goldMedalCount": 0 }, { "id": "NUM", "name": "Ireland", "goldMedalCount": 0 }, { "id": "NUM", "name": "Israel", "goldMedalCount": 0 }, { "id": "NUM", "name": "Italy", "goldMedalCount": 0 }, { "id": "NUM", "name": "Jamaica", "goldMedalCount": 0 }, { "id": "NUM", "name": "Japan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Jordan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Kazakhstan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Kenya", "goldMedalCount": 0 }, { "id": "NUM", "name": "Kiribati", "goldMedalCount": 0 }, { "id": "NUM", "name": "Kuwait", "goldMedalCount": 0 }, { "id": "NUM", "name": "Kyrgyzstan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Laos", "goldMedalCount": 0 }, { "id": "NUM", "name": "Latvia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Lebanon", "goldMedalCount": 0 }, { "id": "NUM", "name": "Lesotho", "goldMedalCount": 0 }, { "id": "NUM", "name": "Liberia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Libya", "goldMedalCount": 0 }, { "id": "NUM", "name": "Liechtenstein", "goldMedalCount": 0 }, { "id": "NUM", "name": "Lithuania", "goldMedalCount": 0 }, { "id": "NUM", "name": "Luxembourg", "goldMedalCount": 0 }, { "id": "NUM", "name": "Madagascar", "goldMedalCount": 0 }, { "id": "NUM", "name": "Malawi", "goldMedalCount": 0 }, { "id": "NUM", "name": "Malaysia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Maldives", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mali", "goldMedalCount": 0 }, { "id": "NUM", "name": "Malta", "goldMedalCount": 0 }, { "id": "NUM", "name": "Marshall Islands", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mauritania", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mauritius", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mexico", "goldMedalCount": 0 }, { "id": "NUM", "name": "Micronesia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Moldova", "goldMedalCount": 0 }, { "id": "NUM", "name": "Monaco", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mongolia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Montenegro", "goldMedalCount": 0 }, { "id": "NUM", "name": "Morocco", "goldMedalCount": 0 }, { "id": "NUM", "name": "Mozambique", "goldMedalCount": 0 }, { "id": "NUM", "name": "Myanmar (formerly Burma)", "goldMedalCount": 0 }, { "id": "NUM", "name": "Namibia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Nauru", "goldMedalCount": 0 }, { "id": "NUM", "name": "Nepal", "goldMedalCount": 0 }, { "id": "NUM", "name": "Netherlands", "goldMedalCount": 0 }, { "id": "NUM", "name": "New Zealand", "goldMedalCount": 0 }, { "id": "NUM", "name": "Nicaragua", "goldMedalCount": 0 }, { "id": "NUM", "name": "Niger", "goldMedalCount": 0 }, { "id": "NUM", "name": "Nigeria", "goldMedalCount": 0 }, { "id": "NUM", "name": "North Korea", "goldMedalCount": 0 }, { "id": "NUM", "name": "North Macedonia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Norway", "goldMedalCount": 0 }, { "id": "NUM", "name": "Oman", "goldMedalCount": 0 }, { "id": "NUM", "name": "Pakistan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Palau", "goldMedalCount": 0 }, { "id": "NUM", "name": "Palestine State", "goldMedalCount": 0 }, { "id": "NUM", "name": "Panama", "goldMedalCount": 0 }, { "id": "NUM", "name": "Papua New Guinea", "goldMedalCount": 0 }, { "id": "NUM", "name": "Paraguay", "goldMedalCount": 0 }, { "id": "NUM", "name": "Peru", "goldMedalCount": 0 }, { "id": "NUM", "name": "Philippines", "goldMedalCount": 0 }, { "id": "NUM", "name": "Poland", "goldMedalCount": 0 }, { "id": "NUM", "name": "Portugal", "goldMedalCount": 0 }, { "id": "NUM", "name": "Qatar", "goldMedalCount": 0 }, { "id": "NUM", "name": "Romania", "goldMedalCount": 0 }, { "id": "NUM", "name": "Russia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Rwanda", "goldMedalCount": 0 }, { "id": "NUM", "name": "Saint Kitts and Nevis", "goldMedalCount": 0 }, { "id": "NUM", "name": "Saint Lucia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Saint Vincent and the Grenadines", "goldMedalCount": 0 }, { "id": "NUM", "name": "Samoa", "goldMedalCount": 0 }, { "id": "NUM", "name": "San Marino", "goldMedalCount": 0 }, { "id": "NUM", "name": "Sao Tome and Principe", "goldMedalCount": 0 }, { "id": "NUM", "name": "Saudi Arabia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Senegal", "goldMedalCount": 0 }, { "id": "NUM", "name": "Serbia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Seychelles", "goldMedalCount": 0 }, { "id": "NUM", "name": "Sierra Leone", "goldMedalCount": 0 }, { "id": "NUM", "name": "Singapore", "goldMedalCount": 0 }, { "id": "NUM", "name": "Slovakia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Slovenia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Solomon Islands", "goldMedalCount": 0 }, { "id": "NUM", "name": "Somalia", "goldMedalCount": 0 }, { "id": "NUM", "name": "South Africa", "goldMedalCount": 0 }, { "id": "NUM", "name": "South Korea", "goldMedalCount": 0 }, { "id": "NUM", "name": "South Sudan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Spain", "goldMedalCount": 0 }, { "id": "NUM", "name": "Sri Lanka", "goldMedalCount": 0 }, { "id": "NUM", "name": "Sudan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Suriname", "goldMedalCount": 0 }, { "id": "NUM", "name": "Sweden", "goldMedalCount": 0 }, { "id": "NUM", "name": "Switzerland", "goldMedalCount": 0 }, { "id": "NUM", "name": "Syria", "goldMedalCount": 0 }, { "id": "NUM", "name": "Tajikistan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Tanzania", "goldMedalCount": 0 }, { "id": "NUM", "name": "Thailand", "goldMedalCount": 0 }, { "id": "NUM", "name": "Timor-Leste", "goldMedalCount": 0 }, { "id": "NUM", "name": "Togo", "goldMedalCount": 0 }, { "id": "NUM", "name": "Tonga", "goldMedalCount": 0 }, { "id": "NUM", "name": "Trinidad and Tobago", "goldMedalCount": 0 }, { "id": "NUM", "name": "Tunisia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Turkey", "goldMedalCount": 0 }, { "id": "NUM", "name": "Turkmenistan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Tuvalu", "goldMedalCount": 0 }, { "id": "NUM", "name": "Uganda", "goldMedalCount": 0 }, { "id": "NUM", "name": "Ukraine", "goldMedalCount": 0 }, { "id": "NUM", "name": "United Arab Emirates", "goldMedalCount": 0 }, { "id": "NUM", "name": "United Kingdom", "goldMedalCount": 0 }, { "id": "NUM", "name": "United States of America", "goldMedalCount": 0 }, { "id": "NUM", "name": "Uruguay", "goldMedalCount": 0 }, { "id": "NUM", "name": "Uzbekistan", "goldMedalCount": 0 }, { "id": "NUM", "name": "Vanuatu", "goldMedalCount": 0 }, { "id": "NUM", "name": "Venezuela", "goldMedalCount": 0 }, { "id": "NUM", "name": "Vietnam", "goldMedalCount": 0 }, { "id": "NUM", "name": "Yemen", "goldMedalCount": 0 }, { "id": "NUM", "name": "Zambia", "goldMedalCount": 0 }, { "id": "NUM", "name": "Zimbabwe", "goldMedalCount": 0 }].map((count, i) => {
-            count.id = i
-            return count
-        })
-    }
-    changeGold = (index, delta) =>{
-        this.setState({
-            countries: this.state.countries.map(cou => {
-                if (cou.id === index) {
-                    cou.goldMedalCount = Math.max(cou.goldMedalCount + delta, 0)
-                }
-                return cou
-            })
-        })
-    }
-    render() {
-        return (
-            <div>
-                {this.state.countries.map(country =>
-                    <Country
-                        key={country.id}
-                        country= {country}
-                        changeGold={this.changeGold}
-                    />
-                )}
+//import Grid2 from '@mui/material/Unstable_Grid2';
+import { FixedSizeGrid as InfGrid } from 'react-window';
 
+let cellWidth = 300
+let cellHeight = 170
+let cellSpace = 100
+
+
+class Countries extends Component {
+    state = { width: 0, height: 0 };
+
+    render() {
+        let columnCount = Math.max( Math.floor(this.state.width / (cellWidth + cellSpace)), 1)
+        const cell = ({ columnIndex, rowIndex, style }) => (
+            <div style={style}>
+                <Country
+                    key={this.props.countries[columnIndex * columnCount + rowIndex].id + this.props.countries[columnIndex * columnCount + rowIndex].name}
+                    country={this.props.countries[columnIndex * columnCount + rowIndex]}
+                    changeMedal={this.props.changeMedal}
+                    height={cellHeight}
+                    width={cellWidth}
+                />
             </div>
         );
+        let totalMedals = this.props.countries.reduce((sum, country) => country.gold + country.silver + country.bronze + sum, 0)
+        return (
+            <div>
+
+                <h4>Total Medals = {totalMedals}</h4>
+                <InfGrid
+                    columnCount={columnCount}
+                    columnWidth={cellWidth + cellSpace}
+                    height={this.state.height - 100}
+                    rowCount={Math.ceil(this.props.countries.length / columnCount)}
+                    rowHeight={cellHeight + cellSpace}
+                    width={this.state.width - 20}
+                >
+                    {cell}
+                </InfGrid>
+            </div>
+        );
+    }
+    updateDimensions = () => {
+        this.setState({ width: window.innerWidth, height: window.innerHeight });
+    };
+    componentDidMount() {
+        window.addEventListener('resize', this.updateDimensions);
+        this.updateDimensions()
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.updateDimensions);
     }
 }
 
