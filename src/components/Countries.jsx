@@ -4,7 +4,7 @@ import Country from './Country';
 import { FixedSizeGrid as InfGrid } from 'react-window';
 
 let cellWidth = 300
-let cellHeight = 170
+let cellHeight = 190
 let cellSpace = 100
 
 
@@ -16,8 +16,8 @@ class Countries extends Component {
         const cell = ({ columnIndex, rowIndex, style }) => (
             <div style={style}>
                 <Country
-                    key={this.props.countries[columnIndex * columnCount + rowIndex].id + this.props.countries[columnIndex * columnCount + rowIndex].name}
-                    country={this.props.countries[columnIndex * columnCount + rowIndex]}
+                    key={this.props.countries[rowIndex * columnCount + columnIndex].id + this.props.countries[rowIndex * columnCount + columnIndex].name}
+                    country={this.props.countries[rowIndex * columnCount + columnIndex]}
                     changeMedal={this.props.changeMedal}
                     height={cellHeight}
                     width={cellWidth}
