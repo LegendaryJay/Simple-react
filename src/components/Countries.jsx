@@ -1,34 +1,42 @@
 import React, { Component } from 'react';
 import Country from './Country';
-//import Grid2 from '@mui/material/Unstable_Grid2';
 import { FixedSizeGrid as InfGrid } from 'react-window';
+import AddCountryModal from "./AddCountryModal";
+import { Stack, Typography } from '@mui/material';
 
 let cellWidth = 300
-let cellHeight = 190
+let cellHeight = 180
 let cellSpace = 100
 
 
 class Countries extends Component {
     state = { width: 0, height: 0 };
-
     render() {
-        let columnCount = Math.max( Math.floor(this.state.width / (cellWidth + cellSpace)), 1)
+        let columnCount = Math.max(Math.floor(this.state.width / (cellWidth + cellSpace)), 1)
         const cell = ({ columnIndex, rowIndex, style }) => (
             <div style={style}>
                 <Country
-                    key={this.props.countries[rowIndex * columnCount + columnIndex].id + this.props.countries[rowIndex * columnCount + columnIndex].name}
-                    country={this.props.countries[rowIndex * columnCount + columnIndex]}
+                    key={"Country" + (rowIndex * columnCount + columnIndex)}
+                    id = {rowIndex * columnCount + columnIndex}
+                    country={this.props.countries?.[rowIndex * columnCount + columnIndex]}
                     changeMedal={this.props.changeMedal}
                     height={cellHeight}
                     width={cellWidth}
                 />
             </div>
         );
-        let totalMedals = this.props.countries.reduce((sum, country) => country.gold + country.silver + country.bronze + sum, 0)
+        let totalMedals = this.props.countries.reduce((sum, country) => country?.gold + country?.silver + country?.bronze + sum, 0)
         return (
             <div>
+                <Stack  direction="row" spacing={2}>
+                <Typography variant="h3">Country Medals</Typography>
+                    <Typography variant="subtitle1">Total Medals = {totalMedals}</Typography>
+                    <AddCountryModal
+                        addCountry={this.props.addCountry}
+                    />
+                </Stack>
 
-                <h4>Total Medals = {totalMedals}</h4>
+
                 <InfGrid
                     columnCount={columnCount}
                     columnWidth={cellWidth + cellSpace}
@@ -39,6 +47,7 @@ class Countries extends Component {
                 >
                     {cell}
                 </InfGrid>
+
             </div>
         );
     }
