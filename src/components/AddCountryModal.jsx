@@ -1,4 +1,4 @@
-import React, {Component, useState, useRef } from "react";
+import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -7,67 +7,64 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from "@material-ui/core/TextField";
 
-class AddCountryModal extends Component {
-  state = {
-    open: false,
-    countryName: ""
+function AddCountryModal(props) {
+  const [open, setOpen] = useState(false);
+  const [countryName, setCountryName] = useState("");
+
+  const handleClickOpen = () => {
+    setOpen(true);
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
+  const handleClose = () => {
+    setOpen(false);
   };
 
-  handleClose = () => {
-    this.setState({ open: false });
+  const handleSave = () => {
+    addNewCountry(countryName);
+    setOpen(false);
   };
 
-  handleSave = () => {
-    this.addNewCountry(this.state.countryName);
-    this.setState({ open: false });
+  const addNewCountry = (countryName) => {
+    props.addCountry(countryName);
   };
 
-  addNewCountry = (countryName) => {
-    this.props.addCountry(countryName)
-  };
-
-  render() {
-    return (
-      <>
-        <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Add Country
-        </Button>
-        <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">Add a new country</DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Please enter the name of the country:
-            </DialogContentText>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="name"
-              label="Country Name"
-              type="text"
-              fullWidth
-              value={this.state.countryName}
-              onChange={(e) => this.setState({ countryName: e.target.value })}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.handleSave} color="primary">
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </>
-    );
-  }
+  return (
+    <>
+      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+        Add Country
+      </Button>
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="form-dialog-title"
+      >
+        <DialogTitle id="form-dialog-title">Add a new country</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please enter the name of the country:
+          </DialogContentText>
+          <TextField
+            autoFocus
+            margin="dense"
+            id="name"
+            label="Country Name"
+            type="text"
+            fullWidth
+            value={countryName}
+            onChange={(e) => setCountryName(e.target.value)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSave} color="primary">
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
 }
-export default AddCountryModal
+
+export default AddCountryModal;
