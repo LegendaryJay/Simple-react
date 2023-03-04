@@ -1,21 +1,37 @@
-import { ExpandLess, ExpandMore } from '@mui/icons-material/';
-import Typography from "@material-ui/core/Typography";
-import AddCircleOutlineIcon from "@material-ui/icons/AddCircleOutline";
-import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
+import PropTypes from 'prop-types';
+import React from 'react';
+import {ExpandLess, ExpandMore} from '@mui/icons-material/';
+import { Typography } from '@mui/material';
 
 function Medal(props) {
+  //rewrite return statement
   return (
-    <div>
-      <Typography variant="subtitle1" sm={12} style={{ color: props.color }}>{props.name}</Typography>
-      <ExpandLess style={{ color: 'white' }} onClick={() => props.changeMedal(props.index, 1, props.type)}>
-        <RemoveCircleOutlineIcon />
-      </ExpandLess>
-      <Typography variant="subtitle1">{props.count}</Typography>
-      <ExpandMore style={{ color: 'white' }} onClick={() => props.changeMedal(props.index, -1, props.type)}>
-        <AddCircleOutlineIcon />
-      </ExpandMore>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <Typography variant="subtitle1" style={{ color: props.color }}>
+        {props.name}
+      </Typography>
+      <ExpandLess
+        onClick={() => props.changeMedal(props.index, 1, props.type)}
+        style={{ color: props.color }}
+      />
+      <Typography variant="subtitle1">
+        {props.count}
+      </Typography>
+      <ExpandMore
+        onClick={() => props.changeMedal(props.index, -1, props.type)}
+        style={{ color: props.color }}
+      />
     </div>
   );
 }
+
+Medal.propTypes = {
+  name: PropTypes.string,
+  color: PropTypes.string,
+  count: PropTypes.number,
+  index: PropTypes.number,
+  type: PropTypes.number,
+  changeMedal: PropTypes.func
+};
 
 export default Medal;

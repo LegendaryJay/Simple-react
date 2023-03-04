@@ -1,40 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import Countries from './components/Countries';
-import data from './assets/countries.json';
+import { getAllCountries, setCountry, deleteCountry } from './connection';
 
 const App = () => {
-  const [countries, setCountries] = useState(data);
+  const [countries, setCountries] = useState([]);
 
-  const addCountry = (name) => {
-    let country = {
-      name: name,
-      gold: 0,
-      silver: 0,
-      bronze: 0,
-      id: countries.length,
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await getAllCountries();
+      setCountries(data);
     };
-    let newCountries = [...countries, country].sort((a, b) =>
-      a.name > b.name ? 1 : -1
-    ).map((country, i) => {
-      country.id = i
-      return country
-    });
-    setCountries(newCountries);
+    fetchData();
+  }, []);
+
+  const addCountry = async (name) => {
+    const newCountry = {
+      name: name,
+goldMedalCount: 0,
+      silverMedalCount: 0,
+      bronzeMedalCount: 0,
+    };
+    const { data } = await setCountry(newCountry);
+    setCountries([...countries, data]);
   };
 
   const changeMedal = (index, delta, medal) => {
+    console.log(index, delta, medal);
     setCountries(countries.map((cou) => {
       if (cou.id === index) {
+        console.log(cou);
         switch (medal) {
           case 0:
-            cou.bronze = Math.max(cou.bronze + delta, 0);
+            cou.bronzeMedalCount = Math.max(cou.bronzeMedalCount + delta, 0);
             break;
           case 1:
-            cou.silver = Math.max(cou.silver + delta, 0);
+            cou.silverMedalCount = Math.max(cou.silverMedalCount + delta, 0);
             break;
           case 2:
-            cou.gold = Math.max(cou.gold + delta, 0);
+            cou.goldMedalCount = Math.max(cou.goldMedalCount + delta, 0);
             break;
           default:
             break;
@@ -44,12 +48,18 @@ const App = () => {
     }));
   };
 
+  const deleteCountryById = async (id) => {
+    await deleteCountry(id);
+    setCountries(countries.filter((cou) => cou.id !== id));
+  };
+
   return (
     <div className="App">
       <Countries
         countries={countries}
         changeMedal={changeMedal}
         addCountry={addCountry}
+        deleteCountryById={deleteCountryById}
       />
     </div>
   );

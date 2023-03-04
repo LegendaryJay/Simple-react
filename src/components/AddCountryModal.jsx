@@ -1,15 +1,12 @@
-import { useState } from "react";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import TextField from "@material-ui/core/TextField";
+import PropTypes from 'prop-types';
+import { useState, React } from "react";
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+
 
 function AddCountryModal(props) {
   const [open, setOpen] = useState(false);
   const [countryName, setCountryName] = useState("");
+  const [error, setError] = useState("");
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -20,6 +17,10 @@ function AddCountryModal(props) {
   };
 
   const handleSave = () => {
+    if (countryName.length < 3) {
+      setError("The country name must be at least 3 characters long");
+      return;
+    }
     addNewCountry(countryName);
     setOpen(false);
   };
@@ -27,6 +28,7 @@ function AddCountryModal(props) {
   const addNewCountry = (countryName) => {
     props.addCountry(countryName);
   };
+  
 
   return (
     <>
@@ -53,6 +55,7 @@ function AddCountryModal(props) {
             value={countryName}
             onChange={(e) => setCountryName(e.target.value)}
           />
+          {error && <div style={{ color: "red" }}>{error}</div>}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose} color="primary">
@@ -66,5 +69,9 @@ function AddCountryModal(props) {
     </>
   );
 }
+
+AddCountryModal.propTypes = {
+  addCountry: PropTypes.func.isRequired,
+};
 
 export default AddCountryModal;

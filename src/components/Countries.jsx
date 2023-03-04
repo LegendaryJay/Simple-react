@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { React, useState, useEffect } from 'react';
 import Country from './Country';
 import { FixedSizeGrid as InfGrid } from 'react-window';
 import AddCountryModal from "./AddCountryModal";
-import { Stack, Typography } from '@mui/material';
+import {  Typography } from '@mui/material';
 
 const cellWidth = 300;
 const cellHeight = 180;
@@ -33,19 +34,21 @@ function Countries(props) {
         changeMedal={props.changeMedal}
         height={cellHeight}
         width={cellWidth}
+        removeCountry={props.removeCountry}
       />
     </div>
   );
 
-  const totalMedals = props.countries.reduce((sum, country) => country?.gold + country?.silver + country?.bronze + sum, 0);
+  const totalMedals = props.countries.reduce((sum, country) => country?.goldMedalCount + country?.silverMedalCount + country?.bronzeMedalCount + sum, 0);
 
   return (
     <div>
-      <Stack direction="row" spacing={2}>
-        <Typography variant="h3">Country Medals</Typography>
-        <Typography variant="subtitle1">Total Medals = {totalMedals}</Typography>
-        <AddCountryModal addCountry={props.addCountry} />
-      </Stack>
+      <Typography variant="h2">Olympic Medal Tracker</Typography>
+
+      <Typography variant="h3">Countries</Typography>
+      <Typography variant="subtitle1">Total Countries = {props.countries.length}</Typography>
+      <Typography variant="subtitle1">Total Medals = {totalMedals}</Typography>
+      <AddCountryModal addCountry={props.addCountry} />
 
       <InfGrid
         columnCount={columnCount}
@@ -60,5 +63,11 @@ function Countries(props) {
     </div>
   );
 }
+
+Countries.propTypes = {
+  countries: PropTypes.array,
+  addCountry: PropTypes.func,
+  changeMedal: PropTypes.func
+};
 
 export default Countries;
