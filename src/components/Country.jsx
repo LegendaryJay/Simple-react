@@ -1,29 +1,34 @@
-import PropTypes from 'prop-types';
-import { useState, React } from 'react';
+import {  React } from 'react';
 import { Paper, Box, Button } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import Medal from './Medal.jsx';
-import { deleteCountry } from '../connection.js';
 
 
 function Country(props) {
-  const [medals] = useState([
-    { name: 'Bronze', count: props.country?.bronzeMedalCount, color: 'brown' },
-    { name: 'Silver', count: props.country?.silverMedalCount, color: 'silver' },
-    { name: 'Gold', count: props.country?.goldMedalCount, color: 'gold' },
-  ]);
+  const removeCountry = () => {
+    props.removeCountry(props.country.id);
+  }
 
-  const medalRows = medals.map((medal, index) => (
+  const changeMedal = (name, value) => {
+    props.country[name] = value;
+    props.updateCountry(props.country);
+  }
+  const medals = [
+    { name: "goldMedalCount", display: "Gold", value: props.country?.goldMedalCount },
+    { name: "silverMedalCount", display: "Silver", value: props.country?.silverMedalCount },
+    { name: "bronzeMedalCount", display: "Bronze", value: props.country?.bronzeMedalCount },
+  ];
+
+  const medalRows = medals
+  .map((medal, index) => (
     <Medal
-      key={(props.id + "-" + index)}
-      name={medal.name}
-      count={medal?.count ?? 0}
-      color={medal.color}
-      index={props.id}
-      type={index}
-      changeMedal={props.changeMedal}
+      key={(props.index + "-" + index)}
+      index = {index}
+      medal = { medal }
+      changeMedal = {changeMedal}
     />
-  ));
+  )
+  );
 
   return (
     <Paper
@@ -40,7 +45,7 @@ function Country(props) {
       }}
     >
       <Typography variant="subtitle1" align="center" elevation={3} p={2}>
-        {props.country?.name} {(props.country?.bronzeMedalCount ?? 0) + (props.country?.silverMedalCount ?? 0) + (props.country?.goldMedalCount ?? 0)}
+        {props.country?.name} {props.country?.medals?.total}
       </Typography>
       <Box
         sx={{
@@ -55,17 +60,9 @@ function Country(props) {
       >
         {medalRows}
       </Box>
-      <Button variant="contained" color="secondary" onClick={() => deleteCountry(props.country.id)}>Remove</Button>
+      <Button variant="contained" color="secondary" onClick={removeCountry}>Remove</Button>
     </Paper>
   );
 }
-
-Country.propTypes = {
-  country: PropTypes.object,
-  id: PropTypes.number,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  changeMedal: PropTypes.func
-};
 
 export default Country;

@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { React, useState, useEffect } from 'react';
 import Country from './Country';
 import { FixedSizeGrid as InfGrid } from 'react-window';
@@ -25,27 +24,29 @@ function Countries(props) {
 
   const columnCount = Math.max(Math.floor(width / (cellWidth + cellSpace)), 1);
 
-  const cell = ({ columnIndex, rowIndex, style }) => (
+  const cell = ({ columnIndex, rowIndex, style }) => {
+    if (rowIndex * columnCount + columnIndex >= props.countries.length) return null;
+    return (
     <div style={style}>
       <Country
         key={"Country" + (rowIndex * columnCount + columnIndex)}
-        id={rowIndex * columnCount + columnIndex}
+        index={rowIndex * columnCount + columnIndex}
         country={props.countries?.[rowIndex * columnCount + columnIndex]}
-        changeMedal={props.changeMedal}
         height={cellHeight}
         width={cellWidth}
         removeCountry={props.removeCountry}
+        updateCountry={props.updateCountry}
       />
     </div>
-  );
+    );
+  };
 
-  const totalMedals = props.countries.reduce((sum, country) => country?.goldMedalCount + country?.silverMedalCount + country?.bronzeMedalCount + sum, 0);
-
+  const totalMedals = props.countries?.reduce((total, country) => total + (country?.goldMedalCount + country?.silverMedalCount + country?.bronzeMedalCount
+    ), 0);
+  
   return (
     <div>
-      <Typography variant="h2">Olympic Medal Tracker</Typography>
-
-      <Typography variant="h3">Countries</Typography>
+      <Typography variant="h3">Olympic Medal Tracker</Typography>
       <Typography variant="subtitle1">Total Countries = {props.countries.length}</Typography>
       <Typography variant="subtitle1">Total Medals = {totalMedals}</Typography>
       <AddCountryModal addCountry={props.addCountry} />
@@ -63,11 +64,5 @@ function Countries(props) {
     </div>
   );
 }
-
-Countries.propTypes = {
-  countries: PropTypes.array,
-  addCountry: PropTypes.func,
-  changeMedal: PropTypes.func
-};
 
 export default Countries;

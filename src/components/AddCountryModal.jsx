@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState, React } from "react";
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField } from "@mui/material";
+import { Country } from '../Models/Country';
 
 
 function AddCountryModal(props) {
@@ -26,7 +27,7 @@ function AddCountryModal(props) {
   };
 
   const addNewCountry = (countryName) => {
-    props.addCountry(countryName);
+    props.addCountry(new Country(null, countryName, 0, 0, 0));
   };
   
 

@@ -1,65 +1,61 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Countries from './components/Countries';
-import { getAllCountries, setCountry, deleteCountry } from './connection';
+import { countryManager } from './connection';
 
 const App = () => {
+  
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await getAllCountries();
-      setCountries(data);
+    const fetchCountries = async () => {
+      const countries = await countryManager.getAllCountries();
+      setCountries(countries);
+      
     };
-    fetchData();
+
+    fetchCountries();
   }, []);
 
-  const addCountry = async (name) => {
-    const newCountry = {
-      name: name,
-goldMedalCount: 0,
-      silverMedalCount: 0,
-      bronzeMedalCount: 0,
-    };
-    const { data } = await setCountry(newCountry);
-    setCountries([...countries, data]);
-  };
-
-  const changeMedal = (index, delta, medal) => {
-    console.log(index, delta, medal);
-    setCountries(countries.map((cou) => {
-      if (cou.id === index) {
-        console.log(cou);
-        switch (medal) {
-          case 0:
-            cou.bronzeMedalCount = Math.max(cou.bronzeMedalCount + delta, 0);
-            break;
-          case 1:
-            cou.silverMedalCount = Math.max(cou.silverMedalCount + delta, 0);
-            break;
-          case 2:
-            cou.goldMedalCount = Math.max(cou.goldMedalCount + delta, 0);
-            break;
-          default:
-            break;
-        }
-      }
-      return cou;
-    }));
+  const addCountry = async (country) => {
+    //add the country
+    const newCountry = await countryManager.setCountry(country);
+    //update the state
+    await setCountries([...countries, newCountry]);
   };
 
   const deleteCountryById = async (id) => {
-    await deleteCountry(id);
-    setCountries(countries.filter((cou) => cou.id !== id));
+    //delete the country
+    await countryManager.deleteCountry(id);
+    //update the state
+    await setCountries(
+      countries.filter((country) => {
+        return country.id !== id;
+      })
+    );
+  };
+  
+  const updateCountry = async (country) => {
+    //update the country
+    const updatedCountry = await countryManager.updateCountry(country);
+    //update the state
+    await setCountries(
+      countries.map((country) => {
+        if (country.id === updatedCountry.id) {
+          return updatedCountry;
+        }
+        return country;
+      })
+    );
   };
 
   return (
     <div className="App">
       <Countries
         countries={countries}
-        changeMedal={changeMedal}
+        updateCountry={updateCountry}
         addCountry={addCountry}
-        deleteCountryById={deleteCountryById}
+        removeCountry={deleteCountryById}
       />
     </div>
   );
